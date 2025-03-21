@@ -1,70 +1,77 @@
-<<<<<<< HEAD
-# nasa-api
-=======
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# NASA API
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+El proyecto consume la API de DONKI de la NASA y proporciona endpoints para obtener información sobre instrumentos y actividades.
 
-## About Laravel
+## Requisitos
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+- PHP ^8.2
+- Laravel ^12.0
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Dependencias
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Revisar archivo composer.json
 
-## Learning Laravel
+## Instalación
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+1. Clonar repositorio:
+   git clone https://github.com/e-rios/nasa-api.git
+   cd api-nasa
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+2. Instalar dependencias:
+    composer install
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+3. Configurar archivo .env
+    Generar tu API Key en https://api.nasa.gov/ y agregarla en el archivo
+    NASA_API_KEY=api_key_generada
 
-## Laravel Sponsors
+4. Generar clave de la aplicación
+    php artisan key:generate
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+5. Ejecutar servidor
+    php artisan serve
+    http://127.0.0.1:8000
 
-### Premium Partners
+## Estructura del proyecto
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+app/
+├── Http/
+│    └── Controllers/
+├── Models/
+├── Providers/
+└── Services/
+config/
+database/
+public/
+resources/
+routes/
+tests/
 
-## Contributing
+## Endpoints
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+1. Obtener todos los instrumentos
+    Método: GET
+    Ruta: /donki/instruments
+    Respuesta:
+    {"instruments":["SOHO: LASCO\/C2","SOHO: LASCO\/C3","STEREO A: SECCHI\/COR2","STEREO A: IMPACT","STEREO A: PLASTIC","ACE: MAG","ACE: SWEPAM","DSCOVR: PLASMAG","GOES-P: EXIS 1.0-8.0","SOHO: COSTEP 15.8-39.8 MeV","MODEL: REleASE:SOHO\/EPHIN 15.8-39.8 MeV","GOES-P: SEISS >10 MeV","MODEL: REleASE:SOHO\/EPHIN 28.2-50.1 MeV","STEREO A: IMPACT 13-100 MeV","SOHO: COSTEP 28.2-50.1 MeV","GOES-P: SEISS >2MeV"]}
 
-## Code of Conduct
+2. Obtener todos los IDs de actividades
+    Método: GET
+    Ruta: /donki/activity-ids
+    Respuesta:
+    {"activityIDs":["2025-02-19T23:23:00-FLR-001","2025-02-23T14:08:00-IPS-001","2025-02-23T21:20:00-IPS-001","2025-02-22T20:55:00-FLR-001","2025-02-23T02:00:00-FLR-001","2025-02-23T19:22:00-FLR-001","2025-02-24T06:53:00-FLR-001","2025-02-26T05:26:00-IPS-001","2025-02-27T09:00:00-GST-001","2025-02-24T21:50:00-FLR-001","2025-02-25T00:11:00-SEP-001","2025-02-25T00:17:00-SEP-001","2025-02-25T00:20:00-SEP-001","2025-02-25T00:42:00-SEP-001","2025-02-25T03:05:00-SEP-001","2025-02-25T03:52:00-SEP-001","2025-02-25T11:20:00-FLR-001","2025-02-28T08:30:00-IPS-001","2025-02-28T19:32:00-IPS-001","2025-02-26T22:37:00-FLR-001","2025-03-01T03:22:00-SEP-001","2025-02-28T16:18:00-FLR-001","2025-03-04T17:10:00-IPS-001","2025-03-07T17:35:00-RBE-001","2025-03-01T22:44:00-FLR-001","2025-03-02T03:37:00-FLR-001","2025-03-02T05:46:00-FLR-001","2025-03-02T09:26:00-FLR-001","2025-03-07T20:54:00-FLR-001","2025-03-10T13:44:00-IPS-001","2025-03-11T13:03:00-FLR-001","2025-03-11T21:19:00-FLR-001","2025-03-21T10:10:00-IPS-001","2025-03-17T19:04:00-FLR-001","2025-03-17T19:25:00-FLR-001","2025-03-19T23:04:00-FLR-001","2025-03-20T16:49:00-FLR-001","2025-02-24T07:00:00-CME-001","2025-02-26T12:36:00-HSS-001","2025-03-08T04:48:00-IPS-001","2025-03-08T15:00:00-HSS-001","2025-03-12T14:17:00-HSS-001","2025-02-20T00:00:00-CME-001","2025-02-22T21:36:00-CME-001","2025-02-23T02:36:00-CME-001","2025-02-23T19:36:00-CME-001","2025-02-24T21:24:00-CME-001","2025-02-25T12:38:00-CME-001","2025-02-27T00:12:00-CME-001","2025-02-28T17:24:00-CME-001","2025-03-01T23:36:00-CME-001","2025-03-02T04:00:00-CME-001","2025-03-02T06:24:00-CME-001","2025-03-02T09:48:00-CME-001","2025-03-07T21:49:00-CME-001","2025-03-11T14:00:00-CME-001","2025-03-11T22:24:00-CME-001","2025-03-17T19:48:00-CME-001","2025-03-17T20:12:00-CME-001","2025-03-19T23:24:00-CME-001","2025-03-20T17:12:00-CME-001","2025-02-28T17:12:00-CME-001","2025-03-01T18:24:00-CME-001","2025-03-02T15:10:00-RBE-001","2025-03-09T03:00:00-GST-001","2025-03-10T11:50:00-RBE-001","2025-03-10T06:30:00-IPS-001","2025-03-13T13:10:00-RBE-001","2025-03-14T00:00:00-GST-001","2025-03-18T15:10:00-IPS-001"]}
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+3. Obtener porcentaje de uso de todos los instrumentos
+    Método: GET
+    Ruta: /donki/instrument-usage
+    Respuesta:
+    {"instruments_use":{"SOHO: LASCO\/C2":0.0625,"SOHO: LASCO\/C3":0.0625,"STEREO A: SECCHI\/COR2":0.0625,"STEREO A: IMPACT":0.0625,"STEREO A: PLASTIC":0.0625,"ACE: MAG":0.0625,"ACE: SWEPAM":0.0625,"DSCOVR: PLASMAG":0.0625,"GOES-P: EXIS 1.0-8.0":0.0625,"SOHO: COSTEP 15.8-39.8 MeV":0.0625,"MODEL: REleASE:SOHO\/EPHIN 15.8-39.8 MeV":0.0625,"GOES-P: SEISS >10 MeV":0.0625,"MODEL: REleASE:SOHO\/EPHIN 28.2-50.1 MeV":0.0625,"STEREO A: IMPACT 13-100 MeV":0.0625,"SOHO: COSTEP 28.2-50.1 MeV":0.0625,"GOES-P: SEISS >2MeV":0.0625}}
 
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
->>>>>>> 524c021 (primer commit)
+4. Obtener porcentaje de uso de un instrumento
+    Método: POST
+    Ruta: /donki/instrument-activity-usage
+    Cuerpo: 
+    {
+        "instrument": "STEREO A: IMPACT"
+    }
+    Respuesta:
+    {"instrument_activity":{"STEREO A: IMPACT":{"2025-02-28T19:32:00-IPS-001":0.5,"2025-03-10T06:30:00-IPS-001":0.5}}}
